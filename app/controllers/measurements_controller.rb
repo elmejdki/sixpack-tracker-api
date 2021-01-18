@@ -3,18 +3,14 @@ class MeasurementsController < ApplicationController
 
   # GET /measurements
   def index
-    @user = User.all.first
-    @measurements = @user.measurements.all
+    @measurements = current_user.measurements.all
 
     json_response(@measurements)
   end
 
   # POST /measurements
   def create
-    # need to be updated to a signup method that will return a new JWT
-    # TODO: update later
-    @user = User.all.first
-    @measurement = @user.measurements.create!(measurement_params)
+    @measurement = current_user.measurements.create!(measurement_params)
     json_response(@measurement, :created)
   end
 
@@ -46,7 +42,6 @@ class MeasurementsController < ApplicationController
   end
 
   def set_measure
-    @user = User.all.first
-    @measurement = @user.measurements.find(params[:id])
+    @measurement = current_user.measurements.find(params[:id])
   end
 end

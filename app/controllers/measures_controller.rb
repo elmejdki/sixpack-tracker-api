@@ -10,7 +10,6 @@ class MeasuresController < ApplicationController
 
   # POST /measures
   def create
-    # need to be updated to a signup method that will return a new JWT
     @measure = Measure.create!(measure_params)
     @measure.update(image_url: url_for(@measure.image)) if @measure.image.attached?
     json_response(@measure, :created)
