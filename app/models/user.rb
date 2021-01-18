@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   after_initialize :init
-  # encrypt password
+
   has_secure_password
 
   has_one_attached :avatar
