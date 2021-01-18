@@ -32,10 +32,12 @@ RSpec.describe 'Users API', type: :request do
         expect(response).to have_http_status(422)
       end
 
+      # rubocop:disable Layout/LineLength
       it 'returns failure message' do
         expect(json['message'])
           .to match(/Validation failed: Password can't be blank, Username can't be blank, Email can't be blank, Password digest can't be blank/)
       end
+      # rubocop:enable Layout/LineLength
     end
   end
 end

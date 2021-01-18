@@ -1,5 +1,5 @@
 class MeasurementsController < ApplicationController
-  before_action :set_measure, only: [:show, :update, :destroy]
+  before_action :set_measure, only: %i[show update destroy]
 
   # GET /measurements
   def index
@@ -22,7 +22,9 @@ class MeasurementsController < ApplicationController
   # PUT /measurements/:id
   def update
     @measurement.update(measurement_params)
-    @measurement.update(image_url: url_for(@measurement.image)) if measurement_params[:image] && @measurement.image.attached?
+    if measurement_params[:image] && @measurement.image.attached?
+      @measurement.update(image_url: url_for(@measurement.image))
+    end
     head :no_content
   end
 

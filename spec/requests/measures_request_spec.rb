@@ -53,7 +53,6 @@ RSpec.describe 'Measures', type: :request do
     end
   end
 
-
   # Test suite for POST /measures
   describe 'POST /measures' do
     # valid payload
@@ -114,5 +113,4 @@ RSpec.describe 'Measures', type: :request do
       expect(response).to have_http_status(204)
     end
   end
-
 end

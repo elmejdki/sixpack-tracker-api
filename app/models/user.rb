@@ -13,9 +13,7 @@ class User < ApplicationRecord
   def init
     users = User.all
 
-    if users.empty?
-      self.role = 'super-admin'
-    end
+    self.role = 'super-admin' if users.empty?
 
     self.role ||= 'user'
     self.avatar_url ||= ''

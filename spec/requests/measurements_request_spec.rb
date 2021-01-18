@@ -54,7 +54,6 @@ RSpec.describe 'Measurements', type: :request do
     end
   end
 
-
   # Test suite for POST /measurements
   describe 'POST /measurements' do
     # valid payload
