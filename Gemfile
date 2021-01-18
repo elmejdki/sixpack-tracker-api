@@ -29,7 +29,11 @@ gem 'rubocop', '~>0.81.0'
 
 gem 'figaro'
 
-gem 'aws-sdk-s3', require: false
+gem 'aws-sdk-s3'
+
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
