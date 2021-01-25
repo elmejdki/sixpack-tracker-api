@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create'
 
   post 'auth/login', to: 'authentication#authenticate'
+
+  get 'info', to: 'users#info'
 end

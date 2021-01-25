@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  has_one_attached :avatar
+  has_one_attached :avatar, dependent: :destroy
 
   has_many :measurements, dependent: :destroy
 
@@ -13,9 +13,8 @@ class User < ApplicationRecord
   def init
     users = User.all
 
-    self.role = 'super-admin' if users.empty?
+    self.role = 'admin' if users.empty?
 
-    self.role ||= 'user'
-    self.avatar_url ||= ''
+    self.role ||= false
   end
 end
