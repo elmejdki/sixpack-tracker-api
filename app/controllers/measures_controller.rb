@@ -1,5 +1,6 @@
 class MeasuresController < ApplicationController
   before_action :set_measure, only: %i[show update destroy]
+  before_action :check_role
 
   # GET /measures
   def index
@@ -11,7 +12,6 @@ class MeasuresController < ApplicationController
   # POST /measures
   def create
     @measure = Measure.create!(measure_params)
-    @measure.update(image_url: url_for(@measure.image)) if @measure.image.attached?
     json_response(@measure, :created)
   end
 
@@ -23,7 +23,6 @@ class MeasuresController < ApplicationController
   # PUT /measures/:id
   def update
     @measure.update(measure_params)
-    @measure.update(image_url: url_for(@measure.image)) if measure_params[:image] && @measure.image.attached?
     head :no_content
   end
 
@@ -46,5 +45,9 @@ class MeasuresController < ApplicationController
 
   def set_measure
     @measure = Measure.find(params[:id])
+  end
+
+  def check_role
+    raise(ExceptionHandler::AuthenticationError, Message.unauthorized) unless current_user.role == 'admin'
   end
 end
