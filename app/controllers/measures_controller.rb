@@ -1,6 +1,6 @@
 class MeasuresController < ApplicationController
   before_action :set_measure, only: %i[show update destroy]
-  before_action :check_role
+  before_action :check_role, except: %i[index]
 
   # GET /measures
   def index
@@ -23,13 +23,13 @@ class MeasuresController < ApplicationController
   # PUT /measures/:id
   def update
     @measure.update(measure_params)
-    head :no_content
+    json_response(@measure, :ok)
   end
 
   # DELETE /measures/:id
   def destroy
     @measure.destroy
-    head :no_content
+    json_response({ id: @measure.id }, :ok)
   end
 
   private
