@@ -15,6 +15,6 @@ class User < ApplicationRecord
 
     self.role = 'admin' if users.empty?
 
-    self.role ||= false
+    self.role ||= 'user'
   end
 end

@@ -55,24 +55,6 @@ RSpec.describe 'Measures', type: :request do
 
   # Test suite for POST /measures
   describe 'POST /measures' do
-    # valid payload
-    let(:valid_attributes) do
-      # send json payload
-      { title: 'Crunches', unit: 'reps', video: 'http://youtube.com/video' }.to_json
-    end
-
-    context 'when the request is valid' do
-      before { post '/measures', params: valid_attributes, headers: headers }
-
-      it 'creates a measure' do
-        expect(json['title']).to eq('Crunches')
-      end
-
-      it 'returns status code 201' do
-        expect(response).to have_http_status(201)
-      end
-    end
-
     context 'when the request is invalid' do
       let(:invalid_attributes) { { title: nil }.to_json }
       before { post '/measures', params: invalid_attributes, headers: headers }
@@ -96,11 +78,13 @@ RSpec.describe 'Measures', type: :request do
       before { put "/measures/#{measure_id}", params: valid_attributes, headers: headers }
 
       it 'updates the record' do
-        expect(response.body).to be_empty
+        expect(response.body['title']).to match(valid_attributes['title'])
+        expect(response.body['unit']).to match(valid_attributes['unit'])
+        expect(response.body['video']).to match(valid_attributes['video'])
       end
 
-      it 'returns status code 204' do
-        expect(response).to have_http_status(204)
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
       end
     end
   end
@@ -109,8 +93,8 @@ RSpec.describe 'Measures', type: :request do
   describe 'DELETE /measures/:id' do
     before { delete "/measures/#{measure_id}", params: {}, headers: headers }
 
-    it 'returns status code 204' do
-      expect(response).to have_http_status(204)
+    it 'returns status code 200' do
+      expect(response).to have_http_status(200)
     end
   end
 end

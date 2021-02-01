@@ -1,6 +1,6 @@
 class MeasuresController < ApplicationController
   before_action :set_measure, only: %i[show update destroy]
-  before_action :check_role, except: %i[index]
+  before_action :check_role, except: %i[index show]
 
   # GET /measures
   def index
