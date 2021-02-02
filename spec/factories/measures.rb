@@ -1,5 +1,3 @@
-include ActionDispatch::TestProcess
-
 FactoryBot.define do
   factory :measure do
     title { Faker::Lorem.word }

@@ -59,7 +59,7 @@ RSpec.describe 'Measurements', type: :request do
     # valid payload
     let(:valid_attributes) do
       # send json payload
-      { measurements: [{ value: 23, user_id: user.id, measure_id: measure.id }]}.to_json
+      { measurements: [{ value: 23, user_id: user.id, measure_id: measure.id }] }.to_json
     end
 
     context 'when the request is valid' do

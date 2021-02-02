@@ -15,7 +15,7 @@ class MeasurementsController < ApplicationController
 
   def measurement_params
     params.permit(
-      measurements: [:measure_id, :value, :created_at]
+      measurements: %i[measure_id value created_at]
     )
   end
 end
