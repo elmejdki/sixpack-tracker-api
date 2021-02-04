@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :measurements
+  resources :measures
+
+  get 'users', to: 'users#index'
+
+  post 'signup', to: 'users#create'
+
+  post 'auth/login', to: 'authentication#authenticate'
+
+  get 'info', to: 'users#info'
 end
